@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
 import firebase, { provider } from "../../firebase";
+import Images from "../Images";
 
 class App extends Component {
-  state = { photos: [], name: null };
+  state = { photo: null, name: null };
 
   signIn = () => {
     firebase
@@ -11,14 +12,10 @@ class App extends Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
-        console.log(user.displayName);
         this.setState({
-          photos: [user.photoURL, user.photoURL, user.photoURL, user.photoURL],
+          photo: user.photoURL,
           name: user.displayName
         });
-      })
-      .catch(error => {
-        console.log(error);
       });
   };
 
@@ -29,9 +26,7 @@ class App extends Component {
           <button onClick={this.signIn}>Login</button>
         </header>
         <main>
-          {this.state.photos.map((photo, index) => {
-            return <img src={photo} alt="face" key={index} />;
-          })}
+          <Images photo={this.state.photo} name={this.state.name} />
         </main>
       </>
     );
