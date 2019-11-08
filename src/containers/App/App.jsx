@@ -3,7 +3,7 @@ import "./App.css";
 import firebase, { provider } from "../../firebase";
 
 class App extends Component {
-  state = { photo: null };
+  state = { photos: [], name: null };
 
   signIn = () => {
     firebase
@@ -11,8 +11,11 @@ class App extends Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
-        console.log(user.photoURL);
-        this.setState({ photo: user.photoURL });
+        console.log(user.displayName);
+        this.setState({
+          photos: [user.photoURL, user.photoURL, user.photoURL, user.photoURL],
+          name: user.displayName
+        });
       })
       .catch(error => {
         console.log(error);
@@ -21,12 +24,16 @@ class App extends Component {
 
   render() {
     return (
-      <header className="App">
-        <button onClick={this.signIn}>Login</button>
-      </header>
-      // <main>
-      //   {this.state.photo.}
-      // </main>
+      <>
+        <header className="App">
+          <button onClick={this.signIn}>Login</button>
+        </header>
+        <main>
+          {this.state.photos.map((photo, index) => {
+            return <img src={photo} alt="face" key={index} />;
+          })}
+        </main>
+      </>
     );
   }
 }
