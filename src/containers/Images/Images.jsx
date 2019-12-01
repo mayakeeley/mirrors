@@ -6,7 +6,7 @@ class Images extends Component {
   state = {};
 
   render() {
-    let images = 6;
+    let images = 5;
     let invertPercentages = [];
 
     for (let i = 0; i < images; i++) {

@@ -32,5 +32,17 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  min-height: 80vh;
+  width: 100vw;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    width: 300px;
+  }
 }
