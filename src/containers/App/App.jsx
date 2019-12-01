@@ -20,13 +20,19 @@ class App extends Component {
   };
 
   render() {
+    const text = this.state.photo ? (
+      <p>Click on each face to see what happens!</p>
+    ) : (
+      <button onClick={this.signIn}>Login</button>
+    );
     return (
       <>
         <header className="App">
-          <button onClick={this.signIn}>Login</button>
+          <h1>Hall of Mirrors</h1>
         </header>
         <main>
           <Images photo={this.state.photo} name={this.state.name} />
+          <div>{text}</div>
         </main>
       </>
     );

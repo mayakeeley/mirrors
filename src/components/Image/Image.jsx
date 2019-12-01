@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./Image.module.css";
 
 class Image extends Component {
   state = {
@@ -14,16 +15,18 @@ class Image extends Component {
 
   render() {
     return (
-      <img
-        src={this.props.photo}
-        alt={this.props.name}
-        style={{
-          filter: `invert(${this.state.currentInvert}%)`,
-          height: "200px",
-          transition: "1s filter"
-        }}
-        onClick={this.switchInvert}
-      />
+      <div className={styles.mirror}>
+        <img
+          src={this.props.photo}
+          alt={this.props.name}
+          style={{
+            filter: `invert(${this.state.currentInvert}%)`,
+            height: "150px",
+            transition: "1s filter"
+          }}
+          onClick={this.switchInvert}
+        />
+      </div>
     );
   }
 }
